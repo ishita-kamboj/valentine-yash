@@ -42,7 +42,7 @@ const HeartBackground = () => {
       setImgSrc(`${PUBLIC_URL}/sad_teddy.gif`);
       setDisplayText("You don't love me anymore...");
     }
-  }, [position.isMoved]);
+  }, [position.isMoved, clicked]);
 
   useEffect(() => {
     if (yes) {
