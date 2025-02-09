@@ -157,9 +157,9 @@ const HeartBackground = () => {
                 opacity: opacity,
                 backgroundColor: "#b0b0b0",
                 border: "none",
-                width: position.isMoved ? "10%" : "20%",
-                top: position.isMoved ? `${position.top}px` : "",
-                left: position.isMoved ? `${position.left}px` : "",
+                width: position.isMoved && !isMobile ? "10%" : "20%",
+                top: position.isMoved && !isMobile ? `${position.top}px` : "",
+                left: position.isMoved && !isMobile? `${position.left}px` : "",
                 transition: "top 0.2s, left 0.2s", // Smooth transition
               }}
             >
