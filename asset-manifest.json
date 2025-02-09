@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/valentine-yash/static/css/main.6fd85b7e.css",
+    "main.js": "/valentine-yash/static/js/main.12e1c0ee.js",
+    "index.html": "/valentine-yash/index.html",
+    "main.6fd85b7e.css.map": "/valentine-yash/static/css/main.6fd85b7e.css.map",
+    "main.12e1c0ee.js.map": "/valentine-yash/static/js/main.12e1c0ee.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6fd85b7e.css",
+    "static/js/main.12e1c0ee.js"
+  ]
+}
