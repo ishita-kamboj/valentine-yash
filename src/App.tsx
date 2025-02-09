@@ -14,6 +14,10 @@ const HeartBackground = () => {
     duration: Math.random() * 5 + 5, // Random duration for animation
   }));
   const [position, setPosition] = useState({ top: 0, left: 0, isMoved: false });
+  const [opacity, setOpacity] = useState(1);
+  const fadeOut = () => {
+    if (opacity > 0) setOpacity(opacity - 0.2);
+  };
   const [yes, setYes] = useState(false);
   const [displayText, setDisplayText] = useState("Will you be my Valentine?");
   const [imgSrc, setImgSrc] = useState(`${PUBLIC_URL}/Teddy.gif`);
@@ -121,8 +125,10 @@ const HeartBackground = () => {
               ref={buttonRef}
               // style={{ backgroundColor: "#b0b0b0", border: "none", width: "20%" }}
               onMouseEnter={handleHover}
+              onClick={fadeOut}
               style={{
                 position: position.isMoved ? "absolute" : "static",
+                opacity:opacity,
                 backgroundColor: "#b0b0b0",
                 border: "none",
                 width: position.isMoved ? "10%" : "20%",
