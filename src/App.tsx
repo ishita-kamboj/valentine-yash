@@ -1,7 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./App.css";
 import { Button } from "react-bootstrap";
-import { PUBLIC_URL } from "./constants";
+import  {PUBLIC_URL}  from "./constants.ts";
+
+
 
 const HeartBackground = () => {
   const hearts = Array.from({ length: 30 }, (_, index) => ({
