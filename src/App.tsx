@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./App.css";
 import { Button } from "react-bootstrap";
+import { PUBLIC_URL } from "./constants";
 
 const HeartBackground = () => {
   const hearts = Array.from({ length: 30 }, (_, index) => ({
@@ -13,13 +14,13 @@ const HeartBackground = () => {
   const [position, setPosition] = useState({ top: 0, left: 0, isMoved: false });
   const [yes, setYes] = useState(false);
   const [displayText, setDisplayText] = useState("Will you be my Valentine?");
-  const [imgSrc, setImgSrc] = useState("/Teddy.gif");
+  const [imgSrc, setImgSrc] = useState(`${PUBLIC_URL}/Teddy.gif`);
 
   const buttonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     if (position.isMoved) {
-      setImgSrc("/sad_teddy.gif");
+      setImgSrc(`${PUBLIC_URL}/sad_teddy.gif`);
       setDisplayText("You don't love me anymore...");
     }
   }, [position.isMoved]);
@@ -27,7 +28,7 @@ const HeartBackground = () => {
   useEffect(() => {
     if (yes) {
       setPosition({ ...position, isMoved: false });
-      setImgSrc("/happy_teddy.gif");
+      setImgSrc(`${PUBLIC_URL}/happy_teddy.gif`);
       setDisplayText(`Yayyy! Smile, you made the right choice \u{1F496}`);
     }
   }, [yes]);
