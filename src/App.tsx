@@ -14,7 +14,9 @@ const HeartBackground = () => {
   const [position, setPosition] = useState({ top: 0, left: 0, isMoved: false });
   const [opacity, setOpacity] = useState(1);
   const fadeOut = () => {
-    if (opacity > 0) setOpacity(opacity - 0.2);
+    if(isMobile){
+      if (opacity > 0) setOpacity(opacity - 0.2);
+    }
   };
   const [yes, setYes] = useState(false);
   const [displayText, setDisplayText] = useState("Will you be my Valentine?");
@@ -49,8 +51,8 @@ const HeartBackground = () => {
   }, [yes]);
 
   const getRandomPosition = () => {
-    if (!buttonRef.current) return { top: 0, left: 0, isMoved: false };
-    if (isMobile) {
+    if (!isMobile) {
+      if (!buttonRef.current) return { top: 0, left: 0, isMoved: false };
       // Get the button's dimensions
       const buttonRect = buttonRef.current.getBoundingClientRect();
       const buttonWidth = buttonRect.width;
@@ -149,7 +151,7 @@ const HeartBackground = () => {
               ref={buttonRef}
               // style={{ backgroundColor: "#b0b0b0", border: "none", width: "20%" }}
               onMouseEnter={handleHover}
-              onTouchStart={fadeOut}
+              onClick={fadeOut}
               style={{
                 position: position.isMoved ? "absolute" : "static",
                 opacity: opacity,
