@@ -13,8 +13,10 @@ const HeartBackground = () => {
   }));
   const [position, setPosition] = useState({ top: 0, left: 0, isMoved: false });
   const [opacity, setOpacity] = useState(1);
+  const [clicked, setClicked] = useState(false);
   const fadeOut = () => {
     if(isMobile){
+      setClicked(true);
       if (opacity > 0) setOpacity(opacity - 0.2);
     }
   };
@@ -36,7 +38,7 @@ const HeartBackground = () => {
   }, []);
 
   useEffect(() => {
-    if (position.isMoved) {
+    if (position.isMoved || clicked) {
       setImgSrc(`${PUBLIC_URL}/sad_teddy.gif`);
       setDisplayText("You don't love me anymore...");
     }
