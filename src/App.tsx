@@ -1,9 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./App.css";
 import { Button } from "react-bootstrap";
-import  {PUBLIC_URL}  from "./constants.ts";
-
-
+import { PUBLIC_URL } from "./constants.ts";
 
 const HeartBackground = () => {
   const hearts = Array.from({ length: 30 }, (_, index) => ({
@@ -21,8 +19,19 @@ const HeartBackground = () => {
   const [yes, setYes] = useState(false);
   const [displayText, setDisplayText] = useState("Will you be my Valentine?");
   const [imgSrc, setImgSrc] = useState(`${PUBLIC_URL}/Teddy.gif`);
+  const [isMobile, setIsMobile] = useState(false);
 
   const buttonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    // Detect touch devices (mobile)
+    const checkIfMobile = () => {
+      setIsMobile("ontouchstart" in window || navigator.maxTouchPoints > 0);
+    };
+    checkIfMobile();
+    window.addEventListener("resize", checkIfMobile);
+    return () => window.removeEventListener("resize", checkIfMobile);
+  }, []);
 
   useEffect(() => {
     if (position.isMoved) {
@@ -41,21 +50,25 @@ const HeartBackground = () => {
 
   const getRandomPosition = () => {
     if (!buttonRef.current) return { top: 0, left: 0, isMoved: false };
+    if (isMobile) {
+      // Get the button's dimensions
+      const buttonRect = buttonRef.current.getBoundingClientRect();
+      const buttonWidth = buttonRect.width;
+      const buttonHeight = buttonRect.height;
 
-    // Get the button's dimensions
-    const buttonRect = buttonRef.current.getBoundingClientRect();
-    const buttonWidth = buttonRect.width;
-    const buttonHeight = buttonRect.height;
+      // Calculate maximum allowed positions
+      const maxWidth = window.innerWidth - buttonWidth;
+      const maxHeight = window.innerHeight - buttonHeight;
 
-    // Calculate maximum allowed positions
-    const maxWidth = window.innerWidth - buttonWidth;
-    const maxHeight = window.innerHeight - buttonHeight;
+      // Generate random positions within the viewport
+      const newTop = Math.random() * maxHeight;
+      const newLeft = Math.random() * maxWidth;
 
-    // Generate random positions within the viewport
-    const newTop = Math.random() * maxHeight;
-    const newLeft = Math.random() * maxWidth;
-
-    return { top: newTop, left: newLeft, isMoved: true };
+      return { top: newTop, left: newLeft, isMoved: true };
+    }
+    else {
+      return { top: 0, left: 0, isMoved: false }
+    }
   };
 
   const handleHover = () => {
@@ -70,7 +83,7 @@ const HeartBackground = () => {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        flexDirection:'column'
+        flexDirection: "column",
       }}
     >
       {yes
@@ -91,10 +104,18 @@ const HeartBackground = () => {
       <div
         style={{
           zIndex: 100,
-          marginBottom: "20vh"
+          marginBottom: "20vh",
         }}
       >
-        <div style={{ width: "100vw", display:'flex', alignItems:'center', justifyContent:'center', flexDirection:'column' }}>
+        <div
+          style={{
+            width: "100vw",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            flexDirection: "column",
+          }}
+        >
           <img
             src={imgSrc}
             alt="Animated GIF"
@@ -110,7 +131,10 @@ const HeartBackground = () => {
         {yes ? (
           ""
         ) : (
-          <div className="center-button" style={{width:'50vw', margin:'auto'}}>
+          <div
+            className="center-button"
+            style={{ width: "50vw", margin: "auto" }}
+          >
             <Button
               style={{
                 backgroundColor: "#d72638",
@@ -128,7 +152,7 @@ const HeartBackground = () => {
               onTouchStart={fadeOut}
               style={{
                 position: position.isMoved ? "absolute" : "static",
-                opacity:opacity,
+                opacity: opacity,
                 backgroundColor: "#b0b0b0",
                 border: "none",
                 width: position.isMoved ? "10%" : "20%",
@@ -142,7 +166,16 @@ const HeartBackground = () => {
           </div>
         )}
       </div>
-      <footer style={{zIndex:1, position:'absolute', bottom:'2vh', fontWeight:'500'}}>Made by your Cutie Patootie &#129325;</footer>
+      <footer
+        style={{
+          zIndex: 1,
+          position: "absolute",
+          bottom: "2vh",
+          fontWeight: "500",
+        }}
+      >
+        Made by your Cutie Patootie &#129325;
+      </footer>
     </div>
   );
 };
