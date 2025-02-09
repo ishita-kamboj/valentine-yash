@@ -125,7 +125,7 @@ const HeartBackground = () => {
               ref={buttonRef}
               // style={{ backgroundColor: "#b0b0b0", border: "none", width: "20%" }}
               onMouseEnter={handleHover}
-              onClick={fadeOut}
+              onTouchStart={fadeOut}
               style={{
                 position: position.isMoved ? "absolute" : "static",
                 opacity:opacity,
