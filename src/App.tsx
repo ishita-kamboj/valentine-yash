@@ -15,7 +15,7 @@ const HeartBackground = () => {
   const [opacity, setOpacity] = useState(1);
   const [clicked, setClicked] = useState(false);
   const fadeOut = () => {
-    if(isMobile){
+    if (isMobile) {
       setClicked(true);
       if (opacity > 0) setOpacity(opacity - 0.2);
     }
@@ -24,8 +24,10 @@ const HeartBackground = () => {
   const [displayText, setDisplayText] = useState("Will you be my Valentine?");
   const [imgSrc, setImgSrc] = useState(`${PUBLIC_URL}/Teddy.gif`);
   const [isMobile, setIsMobile] = useState(false);
+  const [width, setWidth] = useState('20%')
 
   const buttonRef = useRef<HTMLButtonElement>(null);
+
 
   useEffect(() => {
     // Detect touch devices (mobile)
@@ -69,9 +71,8 @@ const HeartBackground = () => {
       const newLeft = Math.random() * maxWidth;
 
       return { top: newTop, left: newLeft, isMoved: true };
-    }
-    else {
-      return { top: 0, left: 0, isMoved: false }
+    } else {
+      return { top: 0, left: 0, isMoved: false };
     }
   };
 
@@ -130,7 +131,14 @@ const HeartBackground = () => {
               transition: "transform 0.5s ease-in-out",
             }}
           />
-          <p style={{ fontWeight: "700", fontSize: "2rem" }}>{displayText}</p>
+          <p
+            style={{
+              fontWeight: "700",
+              fontSize: window.innerWidth < 450 ? "1.5rem": '2rem',
+            }}
+          >
+            {displayText}
+          </p>
         </div>
         {yes ? (
           ""
@@ -140,10 +148,11 @@ const HeartBackground = () => {
             style={{ width: "50vw", margin: "auto" }}
           >
             <Button
+            className="yes-button"
               style={{
                 backgroundColor: "#d72638",
                 border: "none",
-                width: "20%",
+                width:"20%",
               }}
               onClick={() => setYes(true)}
             >
@@ -154,6 +163,7 @@ const HeartBackground = () => {
               // style={{ backgroundColor: "#b0b0b0", border: "none", width: "20%" }}
               onMouseEnter={handleHover}
               onClick={fadeOut}
+              className="no-button"
               style={{
                 position: position.isMoved ? "absolute" : "static",
                 opacity: opacity,
@@ -161,7 +171,7 @@ const HeartBackground = () => {
                 border: "none",
                 width: position.isMoved && !isMobile ? "10%" : "20%",
                 top: position.isMoved && !isMobile ? `${position.top}px` : "",
-                left: position.isMoved && !isMobile? `${position.left}px` : "",
+                left: position.isMoved && !isMobile ? `${position.left}px` : "",
                 transition: "top 0.2s, left 0.2s", // Smooth transition
               }}
             >

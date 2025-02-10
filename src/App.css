@@ -58,3 +58,9 @@
     opacity: 0;
   }
 }
+
+@media (max-width: 450px) {
+  .no-button, .yes-button{
+    width: 30% !important; 
+  }
+}
