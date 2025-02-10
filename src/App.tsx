@@ -132,6 +132,7 @@ const HeartBackground = () => {
             }}
           />
           <p
+          className="display-text"
             style={{
               fontWeight: "700",
               fontSize: window.innerWidth < 450 ? "1.5rem": '2rem',

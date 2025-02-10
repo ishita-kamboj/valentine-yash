@@ -63,4 +63,7 @@
   .no-button, .yes-button{
     width: 30% !important; 
   }
+  .display-text{
+    text-align: center;
+  }
 }
