@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/valentine-yash/static/css/main.e7bcf06a.css",
+    "main.css": "/valentine-yash/static/css/main.e5729a5d.css",
     "main.js": "/valentine-yash/static/js/main.16686118.js",
     "index.html": "/valentine-yash/index.html",
-    "main.e7bcf06a.css.map": "/valentine-yash/static/css/main.e7bcf06a.css.map",
+    "main.e5729a5d.css.map": "/valentine-yash/static/css/main.e5729a5d.css.map",
     "main.16686118.js.map": "/valentine-yash/static/js/main.16686118.js.map"
   },
   "entrypoints": [
-    "static/css/main.e7bcf06a.css",
+    "static/css/main.e5729a5d.css",
     "static/js/main.16686118.js"
   ]
 }
